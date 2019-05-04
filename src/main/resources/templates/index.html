@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>User registration</title>
+</head>
+<body>
+<h1>New User</h1>
+<form action="#" method="post" th:action="@{/users/save}" th:object="${user}">
+    <p>First name: <input type="text" th:field="*{firstName}" /></p>
+    <p>Last name: <input type="text" th:field="*{lastName}" /></p>
+    <p>Email: <input type="text" th:field="*{email}" /></p>
+    <p>Password: <input type="text" th:field="*{password}" /></p>
+    <p>City: <input type="text" th:field="*{city}" /></p>
+    <p>Address: <input type="text" th:field="*{address}" /></p>
+
+    <!--<p>Time</p>-->
+    <!--<p>-->
+        <!--H: <input type="number"  th:field="*{hours}" min="0" />-->
+        <!--Min: <input type="number" th:field="*{minutes}" min="0" max="59" />-->
+        <!--Sec: <input type="number" th:field="*{seconds}" min="0" max="59" />-->
+    <!--</p>-->
+    <input type="submit" value="Save" />
+</form>
+<!--<a th:href="@{/show}">Show all users</a>-->
+</body>
+</html>
