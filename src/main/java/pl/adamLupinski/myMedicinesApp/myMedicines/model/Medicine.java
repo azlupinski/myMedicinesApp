@@ -20,8 +20,8 @@ public class Medicine implements Serializable {
     @Column(name = "medicine_info", nullable = false)
     private String medicineInfo;
 
-    @Column(name = "on_description", nullable = false)
-    private boolean onDesc;
+    @Column(name = "on_prescription", nullable = false)
+    private boolean onPresc;
 
     @OneToMany(mappedBy = "medicine")
     private Set<UserMedicine> userMedicines;
@@ -53,12 +53,12 @@ public class Medicine implements Serializable {
         this.medicineInfo = medicineInfo;
     }
 
-    public boolean isOnDesc() {
-        return onDesc;
+    public boolean isOnPresc() {
+        return onPresc;
     }
 
-    public void setOnDesc(boolean onDesc) {
-        this.onDesc = onDesc;
+    public void setOnPresc(boolean onPresc) {
+        this.onPresc = onPresc;
     }
 
     public Set<UserMedicine> getUserMedicines() {
@@ -77,7 +77,7 @@ public class Medicine implements Serializable {
 
         Medicine medicine = (Medicine) o;
 
-        if (isOnDesc() != medicine.isOnDesc()) return false;
+        if (isOnPresc() != medicine.isOnPresc()) return false;
         if (!getId().equals(medicine.getId())) return false;
         if (!getMedicineName().equals(medicine.getMedicineName())) return false;
         if (!getMedicineInfo().equals(medicine.getMedicineInfo())) return false;
@@ -89,7 +89,7 @@ public class Medicine implements Serializable {
         int result = getId().hashCode();
         result = 31 * result + getMedicineName().hashCode();
         result = 31 * result + getMedicineInfo().hashCode();
-        result = 31 * result + (isOnDesc() ? 1 : 0);
+        result = 31 * result + (isOnPresc() ? 1 : 0);
         result = 31 * result + (getUserMedicines() != null ? getUserMedicines().hashCode() : 0);
         return result;
     }
@@ -100,7 +100,7 @@ public class Medicine implements Serializable {
                 "id=" + id +
                 ", medicineName='" + medicineName + '\'' +
                 ", medicineInfo='" + medicineInfo + '\'' +
-                ", onDesc=" + onDesc +
+                ", onPresc=" + onPresc +
                 ", userMedicines=" + userMedicines +
                 '}';
     }

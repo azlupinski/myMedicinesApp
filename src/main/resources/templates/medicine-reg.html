@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8" />
+    <title>User registration</title>
+</head>
+<body>
+<h1>New Medicine</h1>
+<form action="#" method="post" th:action="@{/medicines/save}" th:object="${medicine}">
+    <p>Medicine Name: <input type="text" th:field="*{medicineName}" /></p>
+    <p>Medicine Info: <input type="text" th:field="*{medicineInfo}" /></p>
+    <p>Is description needed: <input type="checkbox" th:field="*{onPresc}" /></p>
+
+    <!--<p>Time</p>-->
+    <!--<p>-->
+        <!--H: <input type="number"  th:field="*{hours}" min="0" />-->
+        <!--Min: <input type="number" th:field="*{minutes}" min="0" max="59" />-->
+        <!--Sec: <input type="number" th:field="*{seconds}" min="0" max="59" />-->
+    <!--</p>-->
+    <input type="submit" value="Save" />
+</form>
+
+
+</body>
+</html>

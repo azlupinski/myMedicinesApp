@@ -36,6 +36,8 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<UserMedicine> userMedicines = new HashSet<UserMedicine>();
 
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<UserRole> roles = new HashSet<>();
 
     public User() {
     }
@@ -104,6 +106,14 @@ public class User implements Serializable {
         this.userMedicines = userMedicines;
     }
 
+    public Set<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -117,7 +127,10 @@ public class User implements Serializable {
         if (!getCity().equals(user.getCity())) return false;
         if (!getAddress().equals(user.getAddress())) return false;
         if (!getEmail().equals(user.getEmail())) return false;
-        return getPassword().equals(user.getPassword());
+        if (!getPassword().equals(user.getPassword())) return false;
+        if (getUserMedicines() != null ? !getUserMedicines().equals(user.getUserMedicines()) : user.getUserMedicines() != null)
+            return false;
+        return getRoles().equals(user.getRoles());
     }
 
     @Override
@@ -129,6 +142,8 @@ public class User implements Serializable {
         result = 31 * result + getAddress().hashCode();
         result = 31 * result + getEmail().hashCode();
         result = 31 * result + getPassword().hashCode();
+        result = 31 * result + (getUserMedicines() != null ? getUserMedicines().hashCode() : 0);
+        result = 31 * result + getRoles().hashCode();
         return result;
     }
 
@@ -142,6 +157,7 @@ public class User implements Serializable {
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }

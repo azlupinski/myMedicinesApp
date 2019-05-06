@@ -9,8 +9,7 @@ import pl.adamLupinski.myMedicinesApp.myMedicines.model.User;
 public class HomeController {
 
     @GetMapping("/")
-    public String showReg(Model model){
-        model.addAttribute("user", new User());
+    public String showHome(){
         return "index";
     }
 }
